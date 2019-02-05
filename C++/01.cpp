@@ -7,7 +7,262 @@
 using namespace std;
 
 #include "Student.h"
+#include "Plane.h"
+#include "PlaneA.h"
 
+
+/*
+
+//函数模板（泛型）
+
+//泛型：业务逻辑一样，数据类型不一样
+
+template <typename T>
+void myswap(T &a, T &b) {
+	T temp = a;
+	a = b;
+	b = temp;
+}
+
+int main() {
+
+	int a = 10;
+	int b = 20;
+	myswap(a,b);
+	cout << a << "," << b << endl;
+	system("pause");
+}
+
+
+//接口：只是逻辑上的划分，语法上跟抽象类没有任何区别
+//接口和抽象类的作用：为了继承的约束性，根本不知道未来的实现
+class Drawable {
+	virtual void draw() = 0;
+};
+
+*/
+
+/*
+//抽象类（有纯虚函数的类成为抽象类）
+//子类继承时，必须实现父类的虚函数
+
+class Shape {
+	
+public:
+	//纯虚函数
+	virtual void sayArea() = 0;
+};
+
+class Circle : public Shape {
+public:
+	Circle(int r) {
+		this->r = r;
+	}
+
+	void sayArea() {
+		cout << "计算圆的面积" << endl;
+	
+	}
+
+private:
+	int r;
+};
+
+int main() {
+	Circle c(10);
+	system("pause");
+}
+*/
+
+/*
+
+//多态：程序扩展性
+//静态多态：重载
+//动态多态：程序运行过程中，决定哪一个函数被调用（重写）
+//发生多态的条件：1.继承 2.父类的引用或指针指向子类对象 3.重写
+
+//虚函数:使用虚函数实现多态
+
+void print(Planes &p) {
+
+	p.fly();
+	p.land();
+}
+ 
+int main() {
+
+	Planes ps;
+	print(ps);
+
+	PlaneA pa;
+	print(pa);
+	system("pause");
+}
+
+
+*/
+
+
+/*
+
+//多继承的二义性
+//虚继承：不同路径继承来的成员只有一份拷贝，解决多继承二义性问题
+
+class A 
+{
+public:
+	char* name;
+};
+
+
+class A1 : virtual public A {};
+class A2 : virtual public A {};
+
+class B : public A1, public A2 {
+
+};
+
+int main() {
+
+	B b;
+	//通过虚继承解决二义性问题
+	b.name = (char*)"lucy";
+}
+
+*/
+
+/*
+
+//继承:程序复用性
+class A {
+private:
+	int a;
+	char* name;
+public:
+	A(char* name,int a) {
+		cout << "A()" << endl;
+	}
+	void sayHi() {
+	
+		cout << "hello world" << endl;
+	}
+
+};
+
+class B : public A {
+
+public: 
+
+	//构造函数传参及构造函数属性初始化列表
+	B(char* name,char* a_name,int a_a) : A(name, 1), a(a_name,a_a) {
+
+		
+		cout << "B()" << endl;
+	}
+
+	//和父类方法同名
+	void sayHi() {
+	
+		cout << "hello I am B" << endl;
+	}
+
+private:
+	A a;
+	
+};
+
+int main() {
+
+	B b((char*)"Rosy",(char*)"Lucy",21);
+	
+	b.sayHi();
+	//调用父类同名方法
+	b.A::sayHi();
+	system("pause");
+}
+
+*/
+
+/*
+
+
+//运算符重载（属性共有），当属性私有时，通过友元函数完成
+class Point {
+
+public:
+	int x;
+	int y;
+
+	Point(int x, int y) {
+		this->x = x;
+		this->y = y;
+	}
+
+	Point operator+(Point p) {
+		Point temp(this->x + p.x,this->y + p.y);
+		return temp;
+	}
+
+};
+
+int main() {
+	Point p1(10,20);
+	Point p2(20, 10);
+	Point p3 = p1 + p2;
+	cout << p3.x << "," << p3.y << endl;
+	system("pause");
+}
+*/
+/*
+//友元函数：
+
+class A {
+	//友元类B可以访问A类任何资源
+	friend class B;
+private:
+	int i;
+public:
+	A(int i) {
+		this->i = i;
+	}
+
+	void print() {
+		cout << i << endl;
+	}
+
+	//友元函数的声明
+	friend void func(A* p, int x);
+
+};
+
+//友元函数的实现
+void func(A* p, int x) {
+
+	p->i = x;
+}
+
+//友元类
+class B {
+
+	void accessA() {
+		a.i = 10;
+	}
+private:
+	A a;
+
+};
+
+int main() {
+
+	A* a = new A(10);
+	a->print();
+	func(a, 20);//通过友元函数修改私有变量i的值
+	a->print();
+
+	system("pause");
+}
+
+*/
 
 //常函数：修饰的是this
 //既不能改变指针的值，也不能改变指针指向的地址
@@ -21,6 +276,7 @@ void fun() const
 }
 */
 
+/*
 //静态属性和静态方法
 class Person {
 
@@ -46,7 +302,7 @@ void main() {
 	Person::total();
 	system("pause");
 }
-
+*/
 
 //C++动态内存分配，使用new/delete分配堆内存和释放内存
 //molloc/free仍然有效,不同点：molloc不会调用构造和析构函数
