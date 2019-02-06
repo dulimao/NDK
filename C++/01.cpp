@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include <stdarg.h>
+#include <stdexcept>
+#include <fstream>
 
 using namespace std;
 
@@ -10,6 +12,170 @@ using namespace std;
 #include "Plane.h"
 #include "PlaneA.h"
 
+
+//FFMPEG
+
+//MediaInfo,YUVPlayer,libgif
+
+/*
+
+//类型转换
+//static_cast//普通情况
+//const_cast;//去常量转换
+//dynamic_cast;//子类类型转父类类型
+//reinterpret_cast;//函数指针转换，不具备移植性
+
+
+
+
+void* fun(int type)
+{
+	switch (type)
+	{
+	case 1:
+	{
+		int i = 1;
+		return &i;
+	}
+		
+	case 2:
+	{
+		char a = 'a';
+		return &a;
+	}
+		
+	default:
+		return NULL;
+	}
+}
+
+
+
+int main()
+{
+	//int a = 2;
+	//double b = a;
+	//cout << b << endl;
+	//double c = 800.3;
+	//int d = c;
+	//int e = static_cast<int>(c);
+
+	//cout << d << endl;
+
+	char* c = (char*)fun(2);
+	char* d = static_cast<char*>(fun(2));
+	cout << *c << "," << *d << endl;
+	system("pause");
+}
+
+
+
+
+
+*/
+
+
+
+/*
+
+//自定义异常
+
+class NullPointException : public exception
+{
+public:
+	NullPointException(const char* e) : exception(e) {
+	}
+};
+
+
+
+//异常
+
+//throw (char*)表示函数可能会抛出的异常类型
+int main() throw (char*){
+
+	try
+	{
+
+		throw NullPointException("空指针异常");
+		if (1)
+		{
+			throw "发生异常";
+
+		}
+		else
+		{
+			//抛出标准异常
+			throw out_of_range("越界异常");
+		}
+
+		
+		
+	}
+	catch (char* e)
+	{
+		cout << e << endl;
+	}
+	catch (int x)
+	{
+		cout << x << endl;
+	}
+
+	catch (NullPointException n)
+	{
+		cout << n.what() << endl;
+	}
+	
+	catch (...)
+	{
+		cout << "发生未知异常" << endl;
+	}
+	catch (const std::exception&)
+	{
+		cout << "发生未知异常" << endl;
+	}
+
+	system("pause");
+	
+}
+
+*/
+
+
+/*
+
+//模板类
+template<class T>
+class A
+{
+public:
+	A(T a)
+	{
+		this->a = a;
+	}
+public:
+	T a;
+};
+
+//继承模板类
+class B : public A<int>
+{
+public:
+	B(int b) : A<int>(b)
+	{
+		
+	}
+};
+
+int main()
+{
+	A<int> a(1);
+	cout << a.a << endl;
+	system("pause");
+}
+
+
+*/
 
 /*
 
